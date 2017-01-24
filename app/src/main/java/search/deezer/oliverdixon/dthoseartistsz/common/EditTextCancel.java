@@ -4,16 +4,19 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.OnTextChanged;
 import search.deezer.oliverdixon.dthoseartistsz.R;
 
 public class EditTextCancel extends RelativeLayout {
 
     @BindView(R.id.edit_text) EditText editText;
+    @BindView(R.id.edit_text_clear) ImageButton editTextClear;
 
     public EditTextCancel(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -48,5 +51,15 @@ public class EditTextCancel extends RelativeLayout {
     @OnClick(R.id.edit_text_clear)
     public void clearText() {
         editText.setText("");
+        editTextClear.setVisibility(GONE);
+    }
+
+    @OnTextChanged(R.id.edit_text)
+    public void onTextChanged(CharSequence s, int start, int count, int after) {
+        if (after > 0) {
+            editTextClear.setVisibility(VISIBLE);
+        } else {
+            editTextClear.setVisibility(GONE);
+        }
     }
 }

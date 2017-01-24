@@ -6,6 +6,7 @@ import android.util.AttributeSet;
 import android.widget.RelativeLayout;
 
 import search.deezer.oliverdixon.dthoseartistsz.R;
+import search.deezer.oliverdixon.dthoseartistsz.common.Logger;
 
 public class ViewSearchBar extends RelativeLayout {
 
@@ -15,10 +16,6 @@ public class ViewSearchBar extends RelativeLayout {
      * If this is -1 no search type has been set.
      */
     private Integer searchType = -1;
-
-    public ViewSearchBar(Context context) {
-        super(context);
-    }
 
     public ViewSearchBar(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -30,32 +27,24 @@ public class ViewSearchBar extends RelativeLayout {
         init(attrs);
     }
 
+    /**
+     * @param attrs passed from the view initialisation.
+     *
+     * We need to call whenever we use the view with XML layouts so we can watch for custom attributes.
+     */
     private void init(final AttributeSet attrs) {
 
+        // Inflate the custom view resource
+        inflate(getContext(), R.layout.view_componant_search_arists, this);
+
+        // Extract the searchType enum from the view xml.
         TypedArray typedArray = getContext().getTheme().obtainStyledAttributes(attrs, R.styleable.ViewSearchBar, 0, 0);
-
         if (typedArray.hasValue(R.styleable.ViewSearchBar_searchType)) {
-            int value = typedArray.getInt(R.styleable.ViewSearchBar_searchType, 0);
+            searchType = typedArray.getInt(R.styleable.ViewSearchBar_searchType, 0);
+        } else {
+            Logger.logWarning("ViewSearchBar has no se arch type set.");
         }
-
         typedArray.recycle();
-
-        /*
-        TypedArray a = context.getTheme().obtainStyledAttributes(
-                attrs,
-                R.styleable.IconView,
-                0, 0);
-
-            // Gets you the 'value' number - 0 or 666 in your example
-            if (a.hasValue(R.styleable.IconView_icon)) {
-                int value = a.getInt(R.styleable.IconView_icon, 0));
-            }
-
-            a.recycle();
-        }
-         */
-
-
     }
 
 }

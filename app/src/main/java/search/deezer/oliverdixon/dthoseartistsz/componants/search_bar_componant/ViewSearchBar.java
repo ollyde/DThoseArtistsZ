@@ -28,17 +28,17 @@ public class ViewSearchBar extends RelativeLayout {
     }
 
     /**
-     * @param attrs passed from the view initialisation.
+     * @param attributeSet passed from the view initialisation.
      *
      * We need to call whenever we use the view with XML layouts so we can watch for custom attributes.
      */
-    private void init(final AttributeSet attrs) {
+    private void init(final AttributeSet attributeSet) {
 
         // Inflate the custom view resource
         inflate(getContext(), R.layout.view_componant_search_arists, this);
 
         // Extract the searchType enum from the view xml.
-        TypedArray typedArray = getContext().getTheme().obtainStyledAttributes(attrs, R.styleable.ViewSearchBar, 0, 0);
+        TypedArray typedArray = getContext().getTheme().obtainStyledAttributes(attributeSet, R.styleable.ViewSearchBar, 0, 0);
         if (typedArray.hasValue(R.styleable.ViewSearchBar_searchType)) {
             searchType = typedArray.getInt(R.styleable.ViewSearchBar_searchType, 0);
         } else {

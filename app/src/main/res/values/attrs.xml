@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
+
     <declare-styleable name="ViewSearchBar">
         <attr name="searchType" format="enum">
             <enum name="artists" value="0"/>
             <!-- <enum name="enum_name_one" value="1"/> --> <!-- Just an example -->
         </attr>
     </declare-styleable>
+
+    <declare-styleable name="EditTextCancel">
+        <attr name="hint" format="string" />
+    </declare-styleable>
+
 </resources>

@@ -1,4 +1,9 @@
 <resources>
+
     <string name="app_name">DThoseArtistsZ</string>
     <string name="action_settings">Settings</string>
+
+    <!-- ViewSearchBar component -->
+    <string name="viewsearchbar_placeholder">Search</string>
+
 </resources>

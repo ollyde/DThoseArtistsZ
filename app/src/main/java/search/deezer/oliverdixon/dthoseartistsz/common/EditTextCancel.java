@@ -21,6 +21,8 @@ public class EditTextCancel extends RelativeLayout {
     @BindView(R.id.edit_text) EditText editText;
     @BindView(R.id.edit_text_clear) ImageView editTextClear;
 
+    private ReferenceObserver<String> referenceObserverNewText;
+
     public EditTextCancel(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(attrs);
@@ -64,5 +66,10 @@ public class EditTextCancel extends RelativeLayout {
         } else {
             editTextClear.setVisibility(GONE);
         }
+        referenceObserverNewText.emit(s.toString());
+    }
+
+    public void listenForTextChanges(Action<String> newTextAction) {
+        referenceObserverNewText.subscribe(newTextAction);
     }
 }

@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.widget.EditText;
-import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import butterknife.BindView;
@@ -13,10 +13,13 @@ import butterknife.OnClick;
 import butterknife.OnTextChanged;
 import search.deezer.oliverdixon.dthoseartistsz.R;
 
+/**
+ * Custom edit text cancel, the default Android one has many bugs that have no been resolved for years.
+ */
 public class EditTextCancel extends RelativeLayout {
 
     @BindView(R.id.edit_text) EditText editText;
-    @BindView(R.id.edit_text_clear) ImageButton editTextClear;
+    @BindView(R.id.edit_text_clear) ImageView editTextClear;
 
     public EditTextCancel(Context context, AttributeSet attrs) {
         super(context, attrs);

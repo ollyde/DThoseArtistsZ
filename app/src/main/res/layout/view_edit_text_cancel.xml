@@ -3,9 +3,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="56dp"
-    android:background="@color/mineShaft"
+    android:background="@color/codGrey"
     >
 
+    <!-- Input text for searching -->
     <EditText
         android:id="@+id/edit_text"
         android:layout_width="fill_parent"
@@ -15,14 +16,15 @@
         android:textColorHint="@color/quillGray"
         />
 
+    <!-- Cancel cross -->
     <ImageView
         android:id="@+id/edit_text_clear"
-        android:layout_width="@dimen/icon_size_medium"
-        android:layout_height="@dimen/icon_size_medium"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         android:layout_alignEnd="@id/edit_text"
-        android:src="@drawable/cross_icon_white"
+        android:background="@drawable/cross_icon_white"
         android:contentDescription="@string/accessibility_cancel_text"
         android:layout_centerVertical="true"
         android:layout_alignParentEnd="true"

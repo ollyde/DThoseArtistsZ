@@ -10,9 +10,12 @@
 
     <!-- Search for artists component -->
     <search.deezer.oliverdixon.dthoseartistsz.componants.search_bar_componant.ViewSearchBar
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:searchType="artists"
+        android:paddingEnd="30dp"
+        android:paddingStart="30dp"
+        android:background="@color/codGrey"
         />
 
 </LinearLayout>

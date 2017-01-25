@@ -7,7 +7,7 @@
     <string name="view_search_bar_placeholder">Search</string>
 
     <!-- Common -->
-
+    <string name="artists_in_capitals">ARTISTS</string>
 
     <!-- Accessibility -->
     <string name="accessibility_cancel_text">Clear text input</string>

@@ -12,4 +12,9 @@
         <attr name="hint" format="string" />
     </declare-styleable>
 
+    <declare-styleable name="TextViewWithIcon">
+        <attr name="iconLeft" format="reference" />
+        <attr name="text" format="string" />
+    </declare-styleable>
+
 </resources>

@@ -6,6 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fitsSystemWindows="true"
     tools:context="search.deezer.oliverdixon.dthoseartistsz.ActivitySearchArtists"
+    android:orientation="vertical"
     >
 
     <!-- Search for artists component -->
@@ -16,6 +17,27 @@
         android:paddingEnd="30dp"
         android:paddingStart="30dp"
         android:background="@color/codGrey"
+        />
+
+    <!-- Heading -->
+    <search.deezer.oliverdixon.dthoseartistsz.common.TextViewWithIcon
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:text="@string/artists_in_capitals"
+        app:iconLeft="@drawable/mic_icon_white"
+        />
+
+    <!-- Separator -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/codGrey"
+        />
+
+    <!-- Results of artists -->
+    <search.deezer.oliverdixon.dthoseartistsz.common.BaseRecycleView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         />
 
 </LinearLayout>

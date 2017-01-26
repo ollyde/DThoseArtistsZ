@@ -40,12 +40,7 @@ public class BaseRecycleViewAdaptor extends RecyclerView.Adapter<BaseRecycleView
         return this.items.size();
     }
 
-    private void addItem(RecycleViewDataModel recycleViewDataModel) {
-        items.add(recycleViewDataModel);
-        notifyItemRangeChanged(items.size() - 2, items.size() - 1);
-    }
-
-    private void setItems(RecycleViewDataModel[] newItems) {
+    public void setItems(RecycleViewDataModel[] newItems) {
         this.items.clear();
         Collections.addAll(this.items, newItems);
         notifyDataSetChanged();

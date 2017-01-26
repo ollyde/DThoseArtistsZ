@@ -3,6 +3,7 @@ package search.deezer.oliverdixon.dthoseartistsz.componants.search_bar_componant
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import search.deezer.oliverdixon.dthoseartistsz.R;
 import search.deezer.oliverdixon.dthoseartistsz.common.RecycleViewDataModel;
 
 public class SearchModelItem implements RecycleViewDataModel {
@@ -142,12 +143,7 @@ public class SearchModelItem implements RecycleViewDataModel {
 
     @Override
     public int getViewId() {
-        return 0;
-    }
-
-    @Override
-    public Class getViewClass() {
-        return null;
+        return R.layout.viewholder_search_result;
     }
 }
 

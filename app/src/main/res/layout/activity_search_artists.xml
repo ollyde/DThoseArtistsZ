@@ -11,6 +11,7 @@
 
     <!-- Search for artists component -->
     <search.deezer.oliverdixon.dthoseartistsz.componants.search_bar_componant.ViewSearchBar
+        android:id="@+id/search_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:searchType="artists"
@@ -35,12 +36,10 @@
         />
 
     <!-- Results of artists -->
-    <!--
-    <android.support.v7.app.AlertController.RecycleListView
-        android:id="@+id/artists_results"
+    <search.deezer.oliverdixon.dthoseartistsz.common.BaseRecycleView
+        android:id="@+id/artist_results"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />
-        -->
 
 </LinearLayout>

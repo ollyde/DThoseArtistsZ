@@ -35,10 +35,12 @@
         />
 
     <!-- Results of artists -->
+    <!--
     <android.support.v7.app.AlertController.RecycleListView
         android:id="@+id/artists_results"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />
+        -->
 
 </LinearLayout>

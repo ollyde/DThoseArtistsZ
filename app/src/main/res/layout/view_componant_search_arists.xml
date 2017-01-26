@@ -20,7 +20,7 @@
 
     <!-- Search component -->
     <search.deezer.oliverdixon.dthoseartistsz.common.EditTextCancel
-        android:id="@+id/search_component"
+        android:id="@+id/search_component_edit_text"
         android:layout_weight="1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

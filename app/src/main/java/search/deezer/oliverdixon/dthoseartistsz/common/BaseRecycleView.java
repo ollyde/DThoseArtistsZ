@@ -22,7 +22,7 @@ public class BaseRecycleView extends RecyclerView {
         setLayoutManager(new LinearLayoutManager(this.getContext()));
         // Generic adaptor that can take any view holder.
         // Setting the adaptor on the ViewController results in much wasted code.
-        setAdapter(new BaseRecycleViewAdaptor(this.getContext()));
+        setAdapter(new BaseRecycleViewAdaptor());
     }
 
     @Override

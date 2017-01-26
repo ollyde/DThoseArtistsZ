@@ -13,13 +13,8 @@ import java.util.Collections;
 public class BaseRecycleViewAdaptor extends RecyclerView.Adapter<BaseRecycleViewHolder> {
 
     private ArrayList<RecycleViewDataModel> items = new ArrayList<>();
-    private LayoutInflater layoutInflater;
 
     private SparseArray<Class> viewClassReference = new SparseArray<>();
-
-    public BaseRecycleViewAdaptor(Context context) {
-        this.layoutInflater = LayoutInflater.from(context);
-    }
 
     @Override
     public BaseRecycleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {

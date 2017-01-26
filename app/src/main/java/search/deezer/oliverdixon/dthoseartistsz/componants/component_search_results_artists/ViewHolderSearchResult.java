@@ -9,6 +9,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import butterknife.BindView;
 import search.deezer.oliverdixon.dthoseartistsz.R;
 import search.deezer.oliverdixon.dthoseartistsz.common.BaseRecycleViewHolder;
+import search.deezer.oliverdixon.dthoseartistsz.common.Logger;
 import search.deezer.oliverdixon.dthoseartistsz.componants.component_search_bar.SearchModelItem;
 
 public class ViewHolderSearchResult extends BaseRecycleViewHolder {
@@ -28,5 +29,7 @@ public class ViewHolderSearchResult extends BaseRecycleViewHolder {
 
         ImageLoader.getInstance().displayImage(searchModelItem.getPictureSmall(), artistImageView);
         artistsTextView.setText(searchModelItem.getName());
+
+        Logger.logWarning("TESTing");
     }
 }

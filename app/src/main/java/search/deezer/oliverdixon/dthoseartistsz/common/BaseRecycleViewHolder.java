@@ -13,5 +13,8 @@ public class BaseRecycleViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void loadModel(Object model) {
+
+
+
     }
 }

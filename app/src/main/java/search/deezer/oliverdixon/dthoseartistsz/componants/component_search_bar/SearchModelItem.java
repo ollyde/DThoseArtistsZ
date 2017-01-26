@@ -5,6 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 import search.deezer.oliverdixon.dthoseartistsz.R;
 import search.deezer.oliverdixon.dthoseartistsz.common.RecycleViewDataModel;
+import search.deezer.oliverdixon.dthoseartistsz.componants.component_search_results_artists.ViewHolderSearchResult;
 
 public class SearchModelItem implements RecycleViewDataModel {
 
@@ -144,6 +145,11 @@ public class SearchModelItem implements RecycleViewDataModel {
     @Override
     public int getViewId() {
         return R.layout.viewholder_search_result;
+    }
+
+    @Override
+    public Class getViewClass() {
+        return ViewHolderSearchResult.class;
     }
 }
 

@@ -1,4 +1,4 @@
-package search.deezer.oliverdixon.dthoseartistsz.componants.search_bar_componant;
+package search.deezer.oliverdixon.dthoseartistsz.componants.component_search_bar;
 
 import android.content.Context;
 import android.content.res.TypedArray;

@@ -6,8 +6,8 @@ import butterknife.BindView;
 import search.deezer.oliverdixon.dthoseartistsz.common.Action;
 import search.deezer.oliverdixon.dthoseartistsz.common.BaseActivity;
 import search.deezer.oliverdixon.dthoseartistsz.common.BaseRecycleView;
-import search.deezer.oliverdixon.dthoseartistsz.componants.search_bar_componant.SearchModelItem;
-import search.deezer.oliverdixon.dthoseartistsz.componants.search_bar_componant.ViewSearchBar;
+import search.deezer.oliverdixon.dthoseartistsz.componants.component_search_bar.SearchModelItem;
+import search.deezer.oliverdixon.dthoseartistsz.componants.component_search_bar.ViewSearchBar;
 
 public class ActivitySearchArtists extends BaseActivity {
 

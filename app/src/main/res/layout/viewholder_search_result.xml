@@ -1,9 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="50dp"
+    android:gravity="center_vertical|start"
     >
+
+    <!-- Main content row. -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        >
+
+        <!-- Main content image -->
+        <ImageView
+            android:id="@+id/artist_results_image"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:contentDescription="@null"
+            />
+
+        <!--  Main text view-->
+        <TextView
+            android:id="@+id/artist_results_text"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            tools:text="Some artist name"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:ellipsize="end"
+            />
+
+    </LinearLayout>
+
+    <!-- Separator -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/codGrey"
+        />
 
 </LinearLayout>

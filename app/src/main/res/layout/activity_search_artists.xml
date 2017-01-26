@@ -10,7 +10,7 @@
     >
 
     <!-- Search for artists component -->
-    <search.deezer.oliverdixon.dthoseartistsz.componants.search_bar_componant.ViewSearchBar
+    <search.deezer.oliverdixon.dthoseartistsz.componants.component_search_bar.ViewSearchBar
         android:id="@+id/search_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -40,6 +40,8 @@
         android:id="@+id/artist_results"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:scrollbarSize="5dp"
+        android:scrollbarThumbVertical="@drawable/scrollbar"
         />
 
 </LinearLayout>

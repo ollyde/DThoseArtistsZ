@@ -2,6 +2,7 @@ package search.deezer.oliverdixon.dthoseartistsz.common;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 
@@ -18,6 +19,7 @@ public class BaseRecycleView extends RecyclerView {
     }
 
     private void init() {
+        setLayoutManager(new LinearLayoutManager(this.getContext()));
         // Generic adaptor that can take any view holder.
         // Setting the adaptor on the ViewController results in much wasted code.
         setAdapter(new BaseRecycleViewAdaptor(this.getContext()));

@@ -1,4 +1,4 @@
-package search.deezer.oliverdixon.dthoseartistsz.componants.search_bar_componant;
+package search.deezer.oliverdixon.dthoseartistsz.componants.component_search_bar;
 
 public interface SearchResultsListener<T> {
     void gotResults(T dataModelResult);

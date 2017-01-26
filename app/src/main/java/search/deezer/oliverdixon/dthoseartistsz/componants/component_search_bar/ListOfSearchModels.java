@@ -1,4 +1,4 @@
-package search.deezer.oliverdixon.dthoseartistsz.componants.search_bar_componant;
+package search.deezer.oliverdixon.dthoseartistsz.componants.component_search_bar;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

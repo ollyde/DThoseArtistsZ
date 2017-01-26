@@ -19,6 +19,11 @@ public class BaseRecycleView extends RecyclerView {
     private void init() {
         // Generic adaptor that can take any view holder.
         // Setting the adaptor on the ViewController results in much wasted code.
-        setAdapter(new BaseRecycleViewAdaptor());
+        setAdapter(new BaseRecycleViewAdaptor(this));
+    }
+
+    @Override
+    public BaseRecycleViewAdaptor getAdapter() {
+        return (BaseRecycleViewAdaptor) super.getAdapter();
     }
 }

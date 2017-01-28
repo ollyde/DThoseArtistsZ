@@ -93,4 +93,8 @@ public class ViewSearchBar extends RelativeLayout {
     public void listenForSearchResults(Action<SearchModelItem[]> action) {
         searchModelResultListeners.subscribe(action);
     }
+
+    public void listenForSearchCleared(Action<Boolean> action) {
+        editTextCancelSearchBox.listenForTextCleared(action);
+    }
 }

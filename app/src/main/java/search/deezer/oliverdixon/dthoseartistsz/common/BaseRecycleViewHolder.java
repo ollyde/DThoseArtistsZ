@@ -7,6 +7,7 @@ import butterknife.ButterKnife;
 
 public class BaseRecycleViewHolder extends RecyclerView.ViewHolder {
 
+    private RecycleViewDataModel recycleViewDataModel;
     public static final String VIEW_TAG = "BaseRecycleViewHolder_tag";
 
     public BaseRecycleViewHolder(View createdView) {
@@ -16,6 +17,11 @@ public class BaseRecycleViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void loadModel(Object model) {
+        recycleViewDataModel = (RecycleViewDataModel) model;
+    }
+
+    public RecycleViewDataModel getRecycleViewDataModel() {
+        return recycleViewDataModel;
     }
 
     /**
@@ -30,10 +36,10 @@ public class BaseRecycleViewHolder extends RecyclerView.ViewHolder {
 
             // Might not exist if we are using multiple recycle view types.
             if (view != null) {
-                view.setOnClickListener(v -> recycleViewOnClickListener.viewClicked(RecycleViewOnClickListener.PressTime.SHORT_PRESS, view));
+                view.setOnClickListener(v -> recycleViewOnClickListener.viewClicked(RecycleViewOnClickListener.PressTime.SHORT_PRESS, BaseRecycleViewHolder.this));
                 view.setLongClickable(true);
                 view.setOnLongClickListener(v -> {
-                    recycleViewOnClickListener.viewClicked(RecycleViewOnClickListener.PressTime.LONG_PRESS, view);
+                    recycleViewOnClickListener.viewClicked(RecycleViewOnClickListener.PressTime.LONG_PRESS, BaseRecycleViewHolder.this);
                     return true;
                 });
             }

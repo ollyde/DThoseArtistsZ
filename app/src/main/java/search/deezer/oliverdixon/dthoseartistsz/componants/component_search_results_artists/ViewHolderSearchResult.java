@@ -9,7 +9,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import butterknife.BindView;
 import search.deezer.oliverdixon.dthoseartistsz.R;
 import search.deezer.oliverdixon.dthoseartistsz.common.BaseRecycleViewHolder;
-import search.deezer.oliverdixon.dthoseartistsz.componants.component_search_bar.SearchModelItem;
+import search.deezer.oliverdixon.dthoseartistsz.models.SearchModelItem;
 
 public class ViewHolderSearchResult extends BaseRecycleViewHolder {
 
@@ -26,6 +26,11 @@ public class ViewHolderSearchResult extends BaseRecycleViewHolder {
 
         SearchModelItem searchModelItem = (SearchModelItem) model;
 
+        // Reset the display image because it takes sometime to fetch it and load it.
+        // We could do some checks here.
+        artistImageView.setImageResource(0);
+
+        // Get the image and set the text.
         ImageLoader.getInstance().displayImage(searchModelItem.getPictureSmall(), artistImageView);
         artistsTextView.setText(searchModelItem.getName());
     }

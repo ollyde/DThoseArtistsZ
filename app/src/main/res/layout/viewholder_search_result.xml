@@ -6,13 +6,16 @@
     android:layout_width="match_parent"
     android:layout_height="70dp"
     android:gravity="center_vertical|start"
+    android:clickable="true"
     >
 
     <!-- Main content row. -->
     <LinearLayout
+        android:id="@+id/artist_results_ll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
+        android:clickable="true"
         >
 
         <!-- Main content image -->
@@ -35,6 +38,7 @@
             android:ellipsize="end"
             android:gravity="center_vertical"
             android:layout_margin="5dp"
+            android:maxLines="2"
             />
 
     </LinearLayout>

@@ -16,6 +16,8 @@ import search.deezer.oliverdixon.dthoseartistsz.common.EditTextCancel;
 import search.deezer.oliverdixon.dthoseartistsz.common.Logger;
 import search.deezer.oliverdixon.dthoseartistsz.common.ReferenceObserver;
 import search.deezer.oliverdixon.dthoseartistsz.common.RetrofitSingleton;
+import search.deezer.oliverdixon.dthoseartistsz.models.ListOfSearchModels;
+import search.deezer.oliverdixon.dthoseartistsz.models.SearchModelItem;
 
 public class ViewSearchBar extends RelativeLayout {
 
@@ -84,6 +86,7 @@ public class ViewSearchBar extends RelativeLayout {
                         .subscribe(artistData -> {
                             // Send the results to the listeners.
                             searchModelResultListeners.emit(artistData.getData());
+                            Logger.logInfo("Got " + artistData.getData().length + " artists.");
                         });
                 }
             }

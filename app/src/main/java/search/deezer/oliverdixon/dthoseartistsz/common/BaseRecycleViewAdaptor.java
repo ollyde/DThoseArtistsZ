@@ -74,7 +74,7 @@ public class BaseRecycleViewAdaptor extends RecyclerView.Adapter<BaseRecycleView
      *
      * Setting this will reset viewIds and any other click listeners.
      */
-    public void setOnClickListener(@Nullable int[] viewIds, @Nullable RecycleViewOnClickListener recycleViewOnClickListener) {
+    public void setOnClickListeners(@Nullable int[] viewIds, @Nullable RecycleViewOnClickListener recycleViewOnClickListener) {
         this.recycleViewOnClickListener = recycleViewOnClickListener;
         this.viewIds = viewIds;
     }

@@ -1,16 +1,15 @@
 package search.deezer.oliverdixon.dthoseartistsz;
 
 import android.os.Bundle;
-import android.view.View;
 
 import butterknife.BindView;
 import search.deezer.oliverdixon.dthoseartistsz.common.Action;
 import search.deezer.oliverdixon.dthoseartistsz.common.BaseActivity;
 import search.deezer.oliverdixon.dthoseartistsz.common.BaseRecycleView;
 import search.deezer.oliverdixon.dthoseartistsz.common.Logger;
-import search.deezer.oliverdixon.dthoseartistsz.common.RecycleViewOnClickListener;
-import search.deezer.oliverdixon.dthoseartistsz.componants.component_search_bar.SearchModelItem;
 import search.deezer.oliverdixon.dthoseartistsz.componants.component_search_bar.ViewSearchBar;
+import search.deezer.oliverdixon.dthoseartistsz.componants.component_search_results_artists.ViewHolderSearchResult;
+import search.deezer.oliverdixon.dthoseartistsz.models.SearchModelItem;
 
 public class ActivitySearchArtists extends BaseActivity {
 
@@ -22,11 +21,12 @@ public class ActivitySearchArtists extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_artists);
 
-        // Set the click listeners for the views.
-        artistsResultsRecycleView.getAdapter().setOnClickListener(new int[]{R.id.artist_results_text, R.id.artist_results_image}, new RecycleViewOnClickListener() {
-            @Override
-            public void viewClicked(PressTime pressTime, View view) {
-                Logger.logError("Working!!!");
+        // Set the click listeners for the view holders.
+        artistsResultsRecycleView.getAdapter().setOnClickListeners(new int[]{R.id.artist_results_ll}, (pressTime, baseRecycleViewHolder) -> {
+            if (baseRecycleViewHolder instanceof ViewHolderSearchResult) {
+                ViewHolderSearchResult viewHolderSearchResult = (ViewHolderSearchResult) baseRecycleViewHolder;
+                SearchModelItem searchModelItem = (SearchModelItem) viewHolderSearchResult.getRecycleViewDataModel();
+                Logger.logInfo("Opening activity for artist " + searchModelItem.getName());
             }
         });
 

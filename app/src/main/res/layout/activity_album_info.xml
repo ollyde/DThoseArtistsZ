@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -15,14 +16,34 @@
         android:gravity="center_vertical"
         >
 
-        <!-- Search component -->
-        <search.deezer.oliverdixon.dthoseartistsz.common.EditTextCancel
-            android:id="@+id/search_component_edit_text"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+        <LinearLayout
             android:layout_width="0dp"
-            android:hint="@string/view_search_bar_placeholder"
-            />
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+            <!-- Artist name -->
+            <EditText
+                android:id="@+id/artist_name"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:textAlignment="viewStart"
+                tools:text="Prince"
+                />
+
+            <!-- Sub header name -->
+            <EditText
+                android:id="@+id/subheader"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:textAlignment="viewStart"
+                tools:text="Albums"
+                />
+
+        </LinearLayout>
+
+
 
         <!-- Search icon -->
         <ImageView

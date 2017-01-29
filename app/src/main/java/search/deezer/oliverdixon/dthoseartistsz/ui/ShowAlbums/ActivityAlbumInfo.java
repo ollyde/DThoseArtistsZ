@@ -17,6 +17,7 @@ import search.deezer.oliverdixon.dthoseartistsz.common.BaseActivity;
 import search.deezer.oliverdixon.dthoseartistsz.common.BaseRecycleView;
 import search.deezer.oliverdixon.dthoseartistsz.common.Logger;
 import search.deezer.oliverdixon.dthoseartistsz.common.RetrofitSingleton;
+import search.deezer.oliverdixon.dthoseartistsz.models.AlbumResultModel;
 import search.deezer.oliverdixon.dthoseartistsz.models.ListOfAlbumsModel;
 import search.deezer.oliverdixon.dthoseartistsz.services.GetAlbumsService;
 
@@ -41,10 +42,10 @@ public class ActivityAlbumInfo extends BaseActivity {
         artistsName.setText(getIntent().getStringExtra(KEY_ARTIST_NAME));
 
         setupRecycleView();
-        getAlbumInfo(getIntent().getExtras().getInt(KEY_ALBUM_ID));
+        getAlbumInfo(getIntent().getExtras().getInt(KEY_ALBUM_ID), getIntent().getExtras().getString(KEY_ARTIST_NAME));
     }
 
-    private void getAlbumInfo(final int artistId) {
+    private void getAlbumInfo(final int artistId, final String artistName) {
 
         // Service for getting artists.
         GetAlbumsService getAlbumsService = RetrofitSingleton.getInstance().getRetrofit().create(GetAlbumsService.class);
@@ -61,11 +62,24 @@ public class ActivityAlbumInfo extends BaseActivity {
             .subscribe(albumsData -> {
                 Logger.logInfo("Got albums data, " + albumsData.getData().size() + " albums.");
 
+                // Make the artist name and id to the results as they are not included.
+                for (AlbumResultModel albumResultModel : albumsData.getData()) {
+                    albumResultModel.setArtistId(artistId);
+                    albumResultModel.setArtistName(artistName);
+                }
+
+                // Populate the recycle view with our models.
+                AlbumResultModel[] albumResultModels = albumsData.getData().toArray(new AlbumResultModel[albumsData.getData().size()]);
+                populateRecycleView(albumResultModels);
             });
     }
 
     private void setupRecycleView() {
         albumResultsRecycleView.setLayoutManager(new GridLayoutManager(this, 2));
+    }
+
+    private void populateRecycleView(AlbumResultModel[] albumResultModels) {
+        albumResultsRecycleView.getAdapter().setItems(albumResultModels);
     }
 
     @OnClick(R.id.search_icon_button)

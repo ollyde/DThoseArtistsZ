@@ -1,9 +1,17 @@
 package search.deezer.oliverdixon.dthoseartistsz.models;
 
+import android.support.annotation.Nullable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class AlbumResultModel {
+import java.io.Serializable;
+
+import search.deezer.oliverdixon.dthoseartistsz.R;
+import search.deezer.oliverdixon.dthoseartistsz.common.RecycleViewDataModel;
+import search.deezer.oliverdixon.dthoseartistsz.ui.ShowAlbums.ViewHolderAlbum;
+
+public class AlbumResultModel implements Serializable, RecycleViewDataModel {
 
     @SerializedName("id")
     @Expose
@@ -50,6 +58,9 @@ public class AlbumResultModel {
     @SerializedName("type")
     @Expose
     private String type;
+
+    @Nullable int artistId;
+    @Nullable String artistName;
 
     public String getId() {
         return id;
@@ -171,4 +182,31 @@ public class AlbumResultModel {
         this.type = type;
     }
 
+    @Nullable
+    public int getArtistId() {
+        return artistId;
+    }
+
+    public void setArtistId(@Nullable int artistId) {
+        this.artistId = artistId;
+    }
+
+    @Nullable
+    public String getArtistName() {
+        return artistName;
+    }
+
+    public void setArtistName(@Nullable String artistName) {
+        this.artistName = artistName;
+    }
+
+    @Override
+    public int getViewId() {
+        return R.layout.viewholder_album;
+    }
+
+    @Override
+    public Class getViewClass() {
+        return ViewHolderAlbum.class;
+    }
 }

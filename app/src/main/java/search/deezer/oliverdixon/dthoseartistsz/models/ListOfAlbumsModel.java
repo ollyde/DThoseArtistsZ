@@ -8,7 +8,7 @@ import java.util.List;
 
 import search.deezer.oliverdixon.dthoseartistsz.common.RecycleViewDataModel;
 
-public class ListOfAlbumsModel implements RecycleViewDataModel, Serializable {
+public class ListOfAlbumsModel implements Serializable {
 
     @SerializedName("data")
     @Expose
@@ -42,17 +42,5 @@ public class ListOfAlbumsModel implements RecycleViewDataModel, Serializable {
 
     public void setNext(String next) {
         this.next = next;
-    }
-
-    @Override
-    public int getViewId() {
-        // TODO
-        return 0;
-    }
-
-    @Override
-    public Class getViewClass() {
-        // TODO
-        return null;
     }
 }

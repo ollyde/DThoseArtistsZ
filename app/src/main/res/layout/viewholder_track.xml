@@ -23,6 +23,7 @@
 
     <!-- Track name and sub header -->
     <LinearLayout
+        android:id="@+id/track_name_and_sub_header"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="wrap_content"

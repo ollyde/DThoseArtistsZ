@@ -17,7 +17,10 @@ import io.reactivex.schedulers.Schedulers;
 import search.deezer.oliverdixon.dthoseartistsz.R;
 import search.deezer.oliverdixon.dthoseartistsz.common.BaseActivity;
 import search.deezer.oliverdixon.dthoseartistsz.common.BaseRecycleView;
+import search.deezer.oliverdixon.dthoseartistsz.common.BaseRecycleViewHolder;
 import search.deezer.oliverdixon.dthoseartistsz.common.Logger;
+import search.deezer.oliverdixon.dthoseartistsz.common.MusicPlayerSingleton;
+import search.deezer.oliverdixon.dthoseartistsz.common.RecycleViewOnClickListener;
 import search.deezer.oliverdixon.dthoseartistsz.common.RetrofitSingleton;
 import search.deezer.oliverdixon.dthoseartistsz.common.SquareImageView;
 import search.deezer.oliverdixon.dthoseartistsz.models.AlbumResultModel;
@@ -33,6 +36,7 @@ public class ActivityListenToAlbum extends BaseActivity {
     @BindView(R.id.title) TextView title;
     @BindView(R.id.sub_header) TextView subHeader;
     @BindView(R.id.album_art) SquareImageView albumArt;
+    @BindView(R.id.album_name) TextView albumName;
     @BindView(R.id.track_list) BaseRecycleView trackList;
 
     @Override
@@ -47,6 +51,7 @@ public class ActivityListenToAlbum extends BaseActivity {
         }
 
         setContentView(R.layout.activity_listen_to_album);
+        setupTrackList();
 
         AlbumResultModel albumResultModel = (AlbumResultModel) getIntent().getExtras().getSerializable(KEY_ALBUM_DATA);
         loadAlbumData(albumResultModel);
@@ -57,6 +62,7 @@ public class ActivityListenToAlbum extends BaseActivity {
         title.setText(albumResultModel.getTitle());
         subHeader.setText(albumResultModel.getArtistName());
         ImageLoader.getInstance().displayImage(albumResultModel.getCoverBig(), albumArt);
+        albumName.setText(albumResultModel.getTitle());
     }
 
     private void getTrackData(final AlbumResultModel albumResultModel) {
@@ -78,6 +84,16 @@ public class ActivityListenToAlbum extends BaseActivity {
                 TrackModel[] trackModels = trackData.getData().toArray(new TrackModel[trackData.getData().size()]);
                 populateTracksList(trackModels);
             });
+    }
+
+    private void setupTrackList() {
+        trackList.getAdapter().setOnClickListeners(new int[]{R.id.track_name_and_sub_header, R.id.track_no, R.id.play_icon, R.id.track_time}, new RecycleViewOnClickListener() {
+            @Override
+            public void viewClicked(PressTime pressTime, BaseRecycleViewHolder baseRecycleViewHolder) {
+                TrackModel trackModel = (TrackModel) baseRecycleViewHolder.getRecycleViewDataModel();
+                MusicPlayerSingleton.getInstance().playTrack(trackModel);
+            }
+        });
     }
 
     private void populateTracksList(TrackModel[] trackModels) {

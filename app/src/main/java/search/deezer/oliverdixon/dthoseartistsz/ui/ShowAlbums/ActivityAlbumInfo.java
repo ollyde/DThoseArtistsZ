@@ -20,24 +20,28 @@ import search.deezer.oliverdixon.dthoseartistsz.common.RetrofitSingleton;
 import search.deezer.oliverdixon.dthoseartistsz.models.AlbumResultModel;
 import search.deezer.oliverdixon.dthoseartistsz.models.ListOfAlbumsModel;
 import search.deezer.oliverdixon.dthoseartistsz.services.GetAlbumsService;
+import search.deezer.oliverdixon.dthoseartistsz.ui.ListenToAlbum.ActivityListenToAlbum;
 
 public class ActivityAlbumInfo extends BaseActivity {
 
     private static final String KEY_ALBUM_ID = "album_id_key";
     private static final String KEY_ARTIST_NAME = "artist_name_key";
 
-    @BindView(R.id.artist_name) TextView artistsName;
+    @BindView(R.id.title) TextView artistsName;
     @BindView(R.id.album_results_recycle_view) BaseRecycleView albumResultsRecycleView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_album_info);
 
+        // Check that we have the correct data.
         if (getIntent() == null || !getIntent().getExtras().containsKey(KEY_ALBUM_ID) || !getIntent().getExtras().containsKey(KEY_ARTIST_NAME)) {
             Logger.logError("You didn't supply an artist id and artist name, closing ActivityAlbumInfo. Please consider opening this activity with the static open function.");
+            finish();
             return;
         }
+
+        setContentView(R.layout.activity_album_info);
 
         artistsName.setText(getIntent().getStringExtra(KEY_ARTIST_NAME));
 
@@ -76,6 +80,11 @@ public class ActivityAlbumInfo extends BaseActivity {
 
     private void setupRecycleView() {
         albumResultsRecycleView.setLayoutManager(new GridLayoutManager(this, 2));
+
+        // On click listeners for albums, to open the album screen.
+        albumResultsRecycleView.getAdapter().setOnClickListeners(new int[]{R.id.album_art}, (pressTime, baseRecycleViewHolder) -> {
+            ActivityListenToAlbum.open(ActivityAlbumInfo.this, (AlbumResultModel) baseRecycleViewHolder.getRecycleViewDataModel());
+        });
     }
 
     private void populateRecycleView(AlbumResultModel[] albumResultModels) {

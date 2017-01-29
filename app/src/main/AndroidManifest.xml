@@ -25,7 +25,16 @@
         <activity
             android:name=".ui.ShowAlbums.ActivityAlbumInfo"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            >
+        </activity>
+
+        <activity
+            android:name=".ui.ListenToAlbum.ActivityListenToAlbum"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:noHistory="true"
+            >
         </activity>
 
     </application>

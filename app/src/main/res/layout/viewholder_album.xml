@@ -28,7 +28,7 @@
 
         <!-- Artist name -->
         <TextView
-            android:id="@+id/artist_name"
+            android:id="@+id/title"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:textAlignment="viewStart"

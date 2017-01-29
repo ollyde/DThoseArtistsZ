@@ -15,7 +15,7 @@ import search.deezer.oliverdixon.dthoseartistsz.models.AlbumResultModel;
 public class ViewHolderAlbum extends BaseRecycleViewHolder {
 
     @BindView(R.id.album_art) ImageView artistAlbumArt;
-    @BindView(R.id.artist_name) TextView artistName;
+    @BindView(R.id.title) TextView artistName;
     @BindView(R.id.sub_header) TextView artistSubHeader;
 
     public ViewHolderAlbum(View itemView) {

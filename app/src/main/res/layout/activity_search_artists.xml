@@ -5,12 +5,12 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fitsSystemWindows="true"
-    tools:context="search.deezer.oliverdixon.dthoseartistsz.ActivitySearchArtists"
+    tools:context="search.deezer.oliverdixon.dthoseartistsz.ui.SearchArtists.ActivitySearchArtists"
     android:orientation="vertical"
     >
 
     <!-- Search for artists component -->
-    <search.deezer.oliverdixon.dthoseartistsz.componants.component_search_bar.ViewSearchBar
+    <search.deezer.oliverdixon.dthoseartistsz.componants.search_bar.ViewSearchBar
         android:id="@+id/search_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

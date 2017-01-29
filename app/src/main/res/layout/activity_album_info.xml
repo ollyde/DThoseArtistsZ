@@ -72,4 +72,10 @@
 
     </LinearLayout>
 
+    <search.deezer.oliverdixon.dthoseartistsz.common.BaseRecycleView
+        android:id="@+id/album_results_recycle_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
 </LinearLayout>

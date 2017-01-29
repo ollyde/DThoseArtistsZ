@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    android:gravity="center_vertical|start"
+    android:clickable="true"
+    >
+
+    <!-- Main content row. -->
+    <LinearLayout
+        android:id="@+id/artist_results_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:clickable="true"
+        >
+
+        <!-- Main content image -->
+        <ImageView
+            android:id="@+id/artist_results_image"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:contentDescription="@null"
+            android:layout_margin="5dp"
+            />
+
+        <!--  Main text view-->
+        <TextView
+            android:id="@+id/artist_results_text"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            tools:text="Some artist name"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:layout_margin="5dp"
+            android:maxLines="2"
+            />
+
+    </LinearLayout>
+
+    <!-- Separator -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/codGrey"
+        />
+
+</LinearLayout>

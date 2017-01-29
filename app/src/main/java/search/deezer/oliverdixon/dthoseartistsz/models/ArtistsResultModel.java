@@ -3,12 +3,13 @@ package search.deezer.oliverdixon.dthoseartistsz.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 import search.deezer.oliverdixon.dthoseartistsz.R;
 import search.deezer.oliverdixon.dthoseartistsz.common.RecycleViewDataModel;
-import search.deezer.oliverdixon.dthoseartistsz.common.RecycleViewOnClickListener;
-import search.deezer.oliverdixon.dthoseartistsz.componants.component_search_results_artists.ViewHolderSearchResult;
+import search.deezer.oliverdixon.dthoseartistsz.ui.SearchArtists.ViewHolderSearchResult;
 
-public class SearchModelItem implements RecycleViewDataModel {
+public class ArtistsResultModel implements RecycleViewDataModel, Serializable {
 
     @SerializedName("id")
     @Expose

@@ -1,4 +1,4 @@
-package search.deezer.oliverdixon.dthoseartistsz.componants.component_search_bar;
+package search.deezer.oliverdixon.dthoseartistsz.componants.search_bar;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -16,8 +16,9 @@ import search.deezer.oliverdixon.dthoseartistsz.common.EditTextCancel;
 import search.deezer.oliverdixon.dthoseartistsz.common.Logger;
 import search.deezer.oliverdixon.dthoseartistsz.common.ReferenceObserver;
 import search.deezer.oliverdixon.dthoseartistsz.common.RetrofitSingleton;
-import search.deezer.oliverdixon.dthoseartistsz.models.ListOfSearchModels;
-import search.deezer.oliverdixon.dthoseartistsz.models.SearchModelItem;
+import search.deezer.oliverdixon.dthoseartistsz.models.ListOfArtistsModel;
+import search.deezer.oliverdixon.dthoseartistsz.models.ArtistsResultModel;
+import search.deezer.oliverdixon.dthoseartistsz.services.SearchService;
 
 public class ViewSearchBar extends RelativeLayout {
 
@@ -32,7 +33,7 @@ public class ViewSearchBar extends RelativeLayout {
 
     @BindView(R.id.search_component_edit_text) EditTextCancel editTextCancelSearchBox;
 
-    private ReferenceObserver<SearchModelItem[]> searchModelResultListeners = new ReferenceObserver<>();
+    private ReferenceObserver<ArtistsResultModel[]> searchModelResultListeners = new ReferenceObserver<>();
 
     public ViewSearchBar(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -76,7 +77,7 @@ public class ViewSearchBar extends RelativeLayout {
                 if (item.length() > 2) {
 
                     // List for results from the api.
-                    Observable<ListOfSearchModels> searchArtists = searchService.getArtists(item);
+                    Observable<ListOfArtistsModel> searchArtists = searchService.getArtists(item);
                     searchArtists.subscribeOn(Schedulers.newThread())
                         .observeOn(AndroidSchedulers.mainThread())
                         .doOnError(error -> {
@@ -93,7 +94,7 @@ public class ViewSearchBar extends RelativeLayout {
         });
     }
 
-    public void listenForSearchResults(Action<SearchModelItem[]> action) {
+    public void listenForSearchResults(Action<ArtistsResultModel[]> action) {
         searchModelResultListeners.subscribe(action);
     }
 

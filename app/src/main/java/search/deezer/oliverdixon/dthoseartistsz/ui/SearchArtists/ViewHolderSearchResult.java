@@ -1,4 +1,4 @@
-package search.deezer.oliverdixon.dthoseartistsz.componants.component_search_results_artists;
+package search.deezer.oliverdixon.dthoseartistsz.ui.SearchArtists;
 
 import android.view.View;
 import android.widget.ImageView;
@@ -9,7 +9,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import butterknife.BindView;
 import search.deezer.oliverdixon.dthoseartistsz.R;
 import search.deezer.oliverdixon.dthoseartistsz.common.BaseRecycleViewHolder;
-import search.deezer.oliverdixon.dthoseartistsz.models.SearchModelItem;
+import search.deezer.oliverdixon.dthoseartistsz.models.ArtistsResultModel;
 
 public class ViewHolderSearchResult extends BaseRecycleViewHolder {
 
@@ -24,14 +24,14 @@ public class ViewHolderSearchResult extends BaseRecycleViewHolder {
     public void loadModel(Object model) {
         super.loadModel(model);
 
-        SearchModelItem searchModelItem = (SearchModelItem) model;
+        ArtistsResultModel artistsResultModel = (ArtistsResultModel) model;
 
         // Reset the display image because it takes sometime to fetch it and load it.
         // We could do some checks here.
         artistImageView.setImageResource(0);
 
         // Get the image and set the text.
-        ImageLoader.getInstance().displayImage(searchModelItem.getPictureSmall(), artistImageView);
-        artistsTextView.setText(searchModelItem.getName());
+        ImageLoader.getInstance().displayImage(artistsResultModel.getPictureSmall(), artistImageView);
+        artistsTextView.setText(artistsResultModel.getName());
     }
 }

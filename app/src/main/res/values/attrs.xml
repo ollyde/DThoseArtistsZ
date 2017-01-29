@@ -17,4 +17,8 @@
         <attr name="text" format="string" />
     </declare-styleable>
 
+    <declare-styleable name="RotatingImageView">
+        <attr name="spinSpeed" format="float" />
+    </declare-styleable>
+
 </resources>

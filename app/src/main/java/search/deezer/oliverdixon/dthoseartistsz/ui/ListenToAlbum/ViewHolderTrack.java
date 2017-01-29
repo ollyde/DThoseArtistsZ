@@ -3,17 +3,17 @@ package search.deezer.oliverdixon.dthoseartistsz.ui.ListenToAlbum;
 import android.text.format.DateUtils;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import butterknife.BindView;
 import search.deezer.oliverdixon.dthoseartistsz.R;
 import search.deezer.oliverdixon.dthoseartistsz.common.BaseRecycleViewHolder;
-import search.deezer.oliverdixon.dthoseartistsz.common.MusicPlayerSingleton;
+import search.deezer.oliverdixon.dthoseartistsz.common.RotatingImageView;
 import search.deezer.oliverdixon.dthoseartistsz.common.TextUtils;
 import search.deezer.oliverdixon.dthoseartistsz.models.TrackModel;
 
 import static android.view.View.GONE;
+import static search.deezer.oliverdixon.dthoseartistsz.ui.ListenToAlbum.ViewHolderTrack.PlayMode.NOT_BEING_USED;
 
 public class ViewHolderTrack extends BaseRecycleViewHolder {
 
@@ -22,10 +22,9 @@ public class ViewHolderTrack extends BaseRecycleViewHolder {
     @BindView(R.id.sub_header) TextView subHeader;
     @BindView(R.id.play_pause_icon) ImageView playPauseIcon;
     @BindView(R.id.track_time) TextView trackTime;
-    @BindView(R.id.track_loading_spinner) ProgressBar progressSpinner;
 
     public enum  PlayMode {
-        PLAYING, PAUSED, LOADING
+        PLAYING, PAUSED, LOADING, NOT_BEING_USED
     }
 
     public ViewHolderTrack(View itemView) {
@@ -52,31 +51,23 @@ public class ViewHolderTrack extends BaseRecycleViewHolder {
         }
 
         trackTime.setText(DateUtils.formatElapsedTime(trackModel.getDuration()));
-
-        progressSpinner.setIndeterminate(true);
     }
 
     public void setPlayMode(final PlayMode playMode) {
 
-        if (playMode == PlayMode.LOADING) {
-            progressSpinner.setVisibility(View.VISIBLE);
-            playPauseIcon.setVisibility(View.GONE);
-        }
-
         if (playMode == PlayMode.PLAYING) {
-            progressSpinner.setVisibility(View.GONE);
             playPauseIcon.setVisibility(View.VISIBLE);
             playPauseIcon.setImageResource(R.drawable.play_icon_white);
         }
 
         if (playMode == PlayMode.PAUSED) {
-            progressSpinner.setVisibility(View.GONE);
             playPauseIcon.setVisibility(View.VISIBLE);
             playPauseIcon.setImageResource(R.drawable.pause_icon_white);
         }
 
-        // TODO REmove
-        progressSpinner.setVisibility(View.VISIBLE);
+        if (playMode == NOT_BEING_USED) {
+            playPauseIcon.setVisibility(GONE);
+        }
     }
 
 

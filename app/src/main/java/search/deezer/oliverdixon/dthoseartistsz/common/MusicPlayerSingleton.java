@@ -21,6 +21,9 @@ public class MusicPlayerSingleton {
     }
 
     public void playTrack(final TrackModel trackModel, Action<Boolean> isPlaying) {
+
+        trackPlayingReferenceObserver.emit(trackModel);
+
         if (isThisTrack(trackModel)) {
 
             if (isThisTrackPlaying(trackModel)) {
@@ -30,8 +33,6 @@ public class MusicPlayerSingleton {
                 resume();
                 isPlaying.invoke(true);
             }
-
-            trackPlayingReferenceObserver.emit(trackModel);
 
         } else {
             setupMediaPlayer(trackModel, isPlaying);

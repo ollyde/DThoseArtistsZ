@@ -112,6 +112,8 @@ public class ActivityListenToAlbum extends BaseActivity {
                         } else {
                             viewHolderTrack.setPlayMode(ViewHolderTrack.PlayMode.PAUSED);
                         }
+                    } else {
+                        viewHolderTrack.setPlayMode(ViewHolderTrack.PlayMode.NOT_BEING_USED);
                     }
                 }
             });

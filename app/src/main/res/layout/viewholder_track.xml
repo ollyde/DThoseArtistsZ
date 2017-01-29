@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="60dp"
     android:gravity="center_vertical|start"
     android:layout_marginBottom="1dp"
-    android:background="@color/mineShaft"
-    >
+    android:background="@color/mineShaft">
 
     <!-- Track no. -->
     <TextView
@@ -70,15 +69,6 @@
         android:contentDescription="@null"
         android:scaleType="fitCenter"
         android:src="@drawable/play_icon_white"
-        android:visibility="gone"
-        />
-
-    <!-- Track loading spinner -->
-    <ProgressBar
-        android:id="@+id/track_loading_spinner"
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
         android:visibility="gone"
         />
 

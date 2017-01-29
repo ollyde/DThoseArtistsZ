@@ -8,6 +8,7 @@
 
     <!-- Common -->
     <string name="artists_in_capitals">ARTISTS</string>
+    <string name="albums">Albums</string>
 
     <!-- Accessibility -->
     <string name="accessibility_cancel_text">Clear text input</string>

@@ -11,7 +11,7 @@
 
     <!-- Main content row. -->
     <LinearLayout
-        android:id="@+id/artist_results_ll"
+        android:id="@+id/artist_results_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"

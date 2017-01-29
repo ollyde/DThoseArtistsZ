@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     >
 
+    <!-- Container for title, I don't like the Android official ones because they usually contain bugs and are harder to manipulate. -->
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -16,35 +17,51 @@
         android:gravity="center_vertical"
         >
 
+        <!-- Artist name and sub header. -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:padding="5dp"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:background="@color/codGrey"
             >
 
             <!-- Artist name -->
-            <EditText
+            <TextView
                 android:id="@+id/artist_name"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 android:textAlignment="viewStart"
                 tools:text="Prince"
+                android:lines="1"
+                android:ellipsize="end"
+                android:background="@color/codGrey"
+                android:textSize="@dimen/header_size_1"
+                android:textColor="@color/header_color_light"
                 />
 
             <!-- Sub header name -->
-            <EditText
-                android:id="@+id/subheader"
+            <TextView
+                android:id="@+id/sub_header"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 android:textAlignment="viewStart"
-                tools:text="Albums"
+                android:text="@string/albums"
+                android:lines="1"
+                android:ellipsize="end"
+                android:background="@color/codGrey"
+                android:textSize="@dimen/header_size_2"
+                android:textColor="@color/sub_header_shade_light"
                 />
 
         </LinearLayout>
 
         <!-- Search icon -->
         <ImageView
+            android:id="@+id/search_icon_button"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:background="@drawable/search_icon_white"

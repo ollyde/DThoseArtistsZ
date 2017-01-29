@@ -1,3 +1,7 @@
 <resources>
     <!-- Default screen margins, per the Android Design guidelines. -->
+
+    <dimen name="header_size_1">20sp</dimen>
+    <dimen name="header_size_2">16sp</dimen>
+
 </resources>

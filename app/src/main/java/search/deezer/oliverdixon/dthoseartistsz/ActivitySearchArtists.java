@@ -1,6 +1,5 @@
 package search.deezer.oliverdixon.dthoseartistsz;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import butterknife.BindView;
@@ -23,12 +22,12 @@ public class ActivitySearchArtists extends BaseActivity {
         setContentView(R.layout.activity_search_artists);
 
         // Set the click listeners for the view holders.
-        artistsResultsRecycleView.getAdapter().setOnClickListeners(new int[]{R.id.artist_results_ll}, (pressTime, baseRecycleViewHolder) -> {
+        artistsResultsRecycleView.getAdapter().setOnClickListeners(new int[]{R.id.artist_results_container}, (pressTime, baseRecycleViewHolder) -> {
             if (baseRecycleViewHolder instanceof ViewHolderSearchResult) {
                 ViewHolderSearchResult viewHolderSearchResult = (ViewHolderSearchResult) baseRecycleViewHolder;
                 SearchModelItem searchModelItem = (SearchModelItem) viewHolderSearchResult.getRecycleViewDataModel();
                 Logger.logInfo("Opening activity for artist " + searchModelItem.getName());
-                ActivityAlbumInfo.open(searchModelItem.getId(), ActivitySearchArtists.this);
+                ActivityAlbumInfo.open(searchModelItem.getId(), searchModelItem.getName(), ActivitySearchArtists.this);
             }
         });
 

@@ -8,4 +8,9 @@
     <color name="mineShaft">#333333</color>
     <color name="quillGray">#DEDFDD</color>
 
+    <!-- Text colors -->
+    <color name="header_color_light">#FFFFFF</color>
+    <color name="sub_header_shade_light">#bbbbbb</color>
+
+
 </resources>

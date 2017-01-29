@@ -4,25 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
+    android:layout_height="wrap_content"
     android:clickable="true"
+    android:padding="5dp"
     >
 
-    <ImageView
+    <!-- Main album art -->
+    <search.deezer.oliverdixon.dthoseartistsz.common.SquareImageView
         android:id="@+id/album_art"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="70dp"
+        android:scaleType="centerCrop"
+        android:contentDescription="@null"
         />
 
     <!-- Artist name and sub header. -->
     <LinearLayout
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="5dp"
-        android:paddingStart="15dp"
-        android:paddingEnd="15dp"
-        android:background="@color/codGrey"
         >
 
         <!-- Artist name -->
@@ -34,7 +35,6 @@
             tools:text="Prince"
             android:lines="1"
             android:ellipsize="end"
-            android:background="@color/codGrey"
             android:textSize="@dimen/header_size_1"
             android:textColor="@color/header_color_light"
             />
@@ -48,13 +48,11 @@
             android:text="@string/albums"
             android:lines="1"
             android:ellipsize="end"
-            android:background="@color/codGrey"
             android:textSize="@dimen/header_size_2"
             android:textColor="@color/sub_header_shade_light"
             tools:text="Sub header"
             />
 
     </LinearLayout>
-
 
 </LinearLayout>

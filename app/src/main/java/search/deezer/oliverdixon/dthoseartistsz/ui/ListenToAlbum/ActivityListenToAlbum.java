@@ -15,6 +15,7 @@ import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import search.deezer.oliverdixon.dthoseartistsz.R;
+import search.deezer.oliverdixon.dthoseartistsz.common.Action;
 import search.deezer.oliverdixon.dthoseartistsz.common.BaseActivity;
 import search.deezer.oliverdixon.dthoseartistsz.common.BaseRecycleView;
 import search.deezer.oliverdixon.dthoseartistsz.common.BaseRecycleViewHolder;
@@ -87,16 +88,32 @@ public class ActivityListenToAlbum extends BaseActivity {
     }
 
     private void setupTrackList() {
-        trackList.getAdapter().setOnClickListeners(new int[]{R.id.track_name_and_sub_header, R.id.track_no, R.id.play_icon, R.id.track_time}, new RecycleViewOnClickListener() {
-            @Override
-            public void viewClicked(PressTime pressTime, BaseRecycleViewHolder baseRecycleViewHolder) {
-                TrackModel trackModel = (TrackModel) baseRecycleViewHolder.getRecycleViewDataModel();
-                MusicPlayerSingleton.getInstance().playTrack(trackModel);
-            }
+        trackList.getAdapter().setOnClickListeners(new int[]{R.id.track_name_and_sub_header, R.id.track_no, R.id.play_icon, R.id.track_time}, (pressTime, baseRecycleViewHolder) -> {
+
+            final ViewHolderTrack viewHolderTrack = (ViewHolderTrack) baseRecycleViewHolder;
+            TrackModel trackModel = (TrackModel) viewHolderTrack.getRecycleViewDataModel();
+
+            // List for track changes and set the icon on or off.
+            MusicPlayerSingleton.getInstance().listenForTrackChange(new Action<TrackModel>() {
+                @Override
+                public void invoke(TrackModel trackModelPlaying) {
+                    super.invoke(trackModelPlaying);
+                    viewHolderTrack.setIsPlaying(MusicPlayerSingleton.getInstance().isThisTrackPlaying(trackModel));
+                }
+            });
+
+            MusicPlayerSingleton.getInstance().playTrack(trackModel, new Action<Boolean>() {
+                @Override
+                public void invoke(Boolean isPlaying) {
+                    super.invoke(isPlaying);
+                    viewHolderTrack.setIsPlaying(isPlaying);
+                }
+            });
         });
     }
 
     private void populateTracksList(TrackModel[] trackModels) {
+        MusicPlayerSingleton.getInstance().clearTracksListening();
         trackList.getAdapter().setItems(trackModels);
     }
 

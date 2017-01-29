@@ -17,4 +17,8 @@ public class ReferenceObserver<T> {
             actionValue.invoke(value);
         }
     }
+
+    public void clear() {
+        actions.clear();
+    }
 }

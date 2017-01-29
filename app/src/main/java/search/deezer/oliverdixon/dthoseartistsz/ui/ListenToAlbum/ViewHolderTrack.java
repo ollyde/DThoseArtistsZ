@@ -46,4 +46,12 @@ public class ViewHolderTrack extends BaseRecycleViewHolder {
 
         trackTime.setText(DateUtils.formatElapsedTime(trackModel.getDuration()));
     }
+
+    public void setIsPlaying(boolean isPlaying) {
+        if (isPlaying) {
+            playIcon.setVisibility(View.VISIBLE);
+        } else {
+            playIcon.setVisibility(GONE);
+        }
+    }
 }

@@ -18,7 +18,7 @@ import search.deezer.oliverdixon.dthoseartistsz.common.ReferenceObserver;
 import search.deezer.oliverdixon.dthoseartistsz.common.RetrofitSingleton;
 import search.deezer.oliverdixon.dthoseartistsz.models.ListOfArtistsModel;
 import search.deezer.oliverdixon.dthoseartistsz.models.ArtistsResultModel;
-import search.deezer.oliverdixon.dthoseartistsz.services.SearchService;
+import search.deezer.oliverdixon.dthoseartistsz.services.ArtistsService;
 
 public class ViewSearchBar extends RelativeLayout {
 
@@ -66,7 +66,7 @@ public class ViewSearchBar extends RelativeLayout {
         typedArray.recycle();
 
         // Service for getting artists.
-        SearchService searchService = RetrofitSingleton.getInstance().getRetrofit().create(SearchService.class);
+        ArtistsService artistsService = RetrofitSingleton.getInstance().getRetrofit().create(ArtistsService.class);
 
         // List for edit text changes
         editTextCancelSearchBox.listenForTextChanges(new Action<String>() {
@@ -77,7 +77,7 @@ public class ViewSearchBar extends RelativeLayout {
                 if (item.length() > 2) {
 
                     // List for results from the api.
-                    Observable<ListOfArtistsModel> searchArtists = searchService.getArtists(item);
+                    Observable<ListOfArtistsModel> searchArtists = artistsService.getArtists(item);
                     searchArtists.subscribeOn(Schedulers.newThread())
                         .observeOn(AndroidSchedulers.mainThread())
                         .doOnError(error -> {

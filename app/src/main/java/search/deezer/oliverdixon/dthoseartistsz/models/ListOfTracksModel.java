@@ -4,15 +4,16 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.List;
 
 @SuppressWarnings("unused")
-public class ListOfArtistsModel implements Serializable {
+public class ListOfTracksModel implements Serializable {
 
     @SerializedName("data")
     @Expose
-    private ArtistsResultModel[] data;
+    private List<TrackModel> data = null;
 
-    public ArtistsResultModel[] getData() {
+    public List<TrackModel> getData() {
         return data;
     }
 }

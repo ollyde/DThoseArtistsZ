@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:gravity="center_vertical|start"
+    android:layout_marginBottom="1dp"
+    android:background="@color/mineShaft"
+    >
+
+    <!-- Track no. -->
+    <TextView
+        android:id="@+id/track_no"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="1."
+        android:textSize="20sp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        />
+
+    <!-- Track name and sub header -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="5dp"
+        >
+
+        <!-- Artist name -->
+        <TextView
+            android:id="@+id/title"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:textAlignment="viewStart"
+            tools:text="Prince"
+            android:lines="1"
+            android:ellipsize="end"
+            android:textSize="@dimen/header_size_1"
+            android:textColor="@color/header_color_light"
+            />
+
+        <!-- Sub header name -->
+        <TextView
+            android:id="@+id/sub_header"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:textAlignment="viewStart"
+            android:text="@string/albums"
+            android:lines="1"
+            android:ellipsize="end"
+            android:textSize="@dimen/header_size_2"
+            android:textColor="@color/sub_header_shade_light"
+            tools:text="Sub header"
+            />
+
+    </LinearLayout>
+
+    <!-- Play icon -->
+    <ImageView
+        android:id="@+id/play_icon"
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        android:padding="5dp"
+        android:contentDescription="@null"
+        />
+
+    <!-- Track time -->
+    <TextView
+        android:id="@+id/track_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="3:30"
+        android:textSize="20sp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:textColor="@color/sub_header_shade_light"
+        />
+
+</LinearLayout>

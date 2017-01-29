@@ -5,6 +5,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/codGrey"
     >
 
     <!-- Container for title, I don't like the Android official ones because they usually contain bugs and are harder to manipulate. -->
@@ -93,6 +94,7 @@
                 android:id="@+id/track_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/codGrey"
                 />
 
         </LinearLayout>

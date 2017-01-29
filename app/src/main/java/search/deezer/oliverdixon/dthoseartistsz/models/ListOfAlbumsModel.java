@@ -8,6 +8,7 @@ import java.util.List;
 
 import search.deezer.oliverdixon.dthoseartistsz.common.RecycleViewDataModel;
 
+@SuppressWarnings("unused")
 public class ListOfAlbumsModel implements Serializable {
 
     @SerializedName("data")

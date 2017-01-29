@@ -11,12 +11,19 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 import search.deezer.oliverdixon.dthoseartistsz.R;
 import search.deezer.oliverdixon.dthoseartistsz.common.BaseActivity;
 import search.deezer.oliverdixon.dthoseartistsz.common.BaseRecycleView;
 import search.deezer.oliverdixon.dthoseartistsz.common.Logger;
+import search.deezer.oliverdixon.dthoseartistsz.common.RetrofitSingleton;
 import search.deezer.oliverdixon.dthoseartistsz.common.SquareImageView;
 import search.deezer.oliverdixon.dthoseartistsz.models.AlbumResultModel;
+import search.deezer.oliverdixon.dthoseartistsz.models.ListOfTracksModel;
+import search.deezer.oliverdixon.dthoseartistsz.models.TrackModel;
+import search.deezer.oliverdixon.dthoseartistsz.services.ArtistsService;
 import search.deezer.oliverdixon.dthoseartistsz.ui.SearchArtists.ActivitySearchArtists;
 
 public class ActivityListenToAlbum extends BaseActivity {
@@ -40,13 +47,41 @@ public class ActivityListenToAlbum extends BaseActivity {
         }
 
         setContentView(R.layout.activity_listen_to_album);
-        loadAlbumData((AlbumResultModel) getIntent().getExtras().getSerializable(KEY_ALBUM_DATA));
+
+        AlbumResultModel albumResultModel = (AlbumResultModel) getIntent().getExtras().getSerializable(KEY_ALBUM_DATA);
+        loadAlbumData(albumResultModel);
+        getTrackData(albumResultModel);
     }
 
-    private void loadAlbumData(AlbumResultModel albumResultModel) {
+    private void loadAlbumData(final AlbumResultModel albumResultModel) {
         title.setText(albumResultModel.getTitle());
         subHeader.setText(albumResultModel.getArtistName());
         ImageLoader.getInstance().displayImage(albumResultModel.getCoverBig(), albumArt);
+    }
+
+    private void getTrackData(final AlbumResultModel albumResultModel) {
+
+        // Service for getting artists.
+        ArtistsService artistsService = RetrofitSingleton.getInstance().getRetrofit().create(ArtistsService.class);
+
+        // Get the artist album info.
+        Observable<ListOfTracksModel> getAlbums = artistsService.getTracks(albumResultModel.getId());
+
+        getAlbums.subscribeOn(Schedulers.newThread())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnError(error -> {
+                Logger.logError("Unable to get tracks list. Message: " + error.getMessage());
+                error.printStackTrace();
+            })
+            .subscribe(trackData -> {
+                Logger.logInfo("Got " + trackData.getData().size() + " tracks.");
+                TrackModel[] trackModels = trackData.getData().toArray(new TrackModel[trackData.getData().size()]);
+                populateTracksList(trackModels);
+            });
+    }
+
+    private void populateTracksList(TrackModel[] trackModels) {
+        trackList.getAdapter().setItems(trackModels);
     }
 
     @OnClick(R.id.search_icon_button)

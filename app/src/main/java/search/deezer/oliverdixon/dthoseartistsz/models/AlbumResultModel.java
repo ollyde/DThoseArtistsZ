@@ -11,6 +11,7 @@ import search.deezer.oliverdixon.dthoseartistsz.R;
 import search.deezer.oliverdixon.dthoseartistsz.common.RecycleViewDataModel;
 import search.deezer.oliverdixon.dthoseartistsz.ui.ShowAlbums.ViewHolderAlbum;
 
+@SuppressWarnings("unused")
 public class AlbumResultModel implements Serializable, RecycleViewDataModel {
 
     @SerializedName("id")
@@ -59,8 +60,8 @@ public class AlbumResultModel implements Serializable, RecycleViewDataModel {
     @Expose
     private String type;
 
-    @Nullable int artistId;
-    @Nullable String artistName;
+    @Nullable private Integer artistId;
+    @Nullable private String artistName;
 
     public String getId() {
         return id;
@@ -183,11 +184,11 @@ public class AlbumResultModel implements Serializable, RecycleViewDataModel {
     }
 
     @Nullable
-    public int getArtistId() {
+    public Integer getArtistId() {
         return artistId;
     }
 
-    public void setArtistId(@Nullable int artistId) {
+    public void setArtistId(@Nullable Integer artistId) {
         this.artistId = artistId;
     }
 

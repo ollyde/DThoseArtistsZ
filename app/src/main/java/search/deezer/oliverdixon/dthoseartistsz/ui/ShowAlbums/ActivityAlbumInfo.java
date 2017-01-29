@@ -19,7 +19,7 @@ import search.deezer.oliverdixon.dthoseartistsz.common.Logger;
 import search.deezer.oliverdixon.dthoseartistsz.common.RetrofitSingleton;
 import search.deezer.oliverdixon.dthoseartistsz.models.AlbumResultModel;
 import search.deezer.oliverdixon.dthoseartistsz.models.ListOfAlbumsModel;
-import search.deezer.oliverdixon.dthoseartistsz.services.GetAlbumsService;
+import search.deezer.oliverdixon.dthoseartistsz.services.ArtistsService;
 import search.deezer.oliverdixon.dthoseartistsz.ui.ListenToAlbum.ActivityListenToAlbum;
 
 public class ActivityAlbumInfo extends BaseActivity {
@@ -52,10 +52,10 @@ public class ActivityAlbumInfo extends BaseActivity {
     private void getAlbumInfo(final int artistId, final String artistName) {
 
         // Service for getting artists.
-        GetAlbumsService getAlbumsService = RetrofitSingleton.getInstance().getRetrofit().create(GetAlbumsService.class);
+        ArtistsService artistsService = RetrofitSingleton.getInstance().getRetrofit().create(ArtistsService.class);
 
         // Get the artist album info.
-        Observable<ListOfAlbumsModel> getAlbums = getAlbumsService.getArtists(artistId);
+        Observable<ListOfAlbumsModel> getAlbums = artistsService.getArtists(artistId);
 
         getAlbums.subscribeOn(Schedulers.newThread())
             .observeOn(AndroidSchedulers.mainThread())

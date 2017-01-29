@@ -1,5 +1,6 @@
 package search.deezer.oliverdixon.dthoseartistsz.ui.ListenToAlbum;
 
+import android.support.annotation.Nullable;
 import android.text.format.DateUtils;
 import android.view.View;
 import android.widget.ImageView;
@@ -53,30 +54,36 @@ public class ViewHolderTrack extends BaseRecycleViewHolder {
 
         trackTime.setText(DateUtils.formatElapsedTime(trackModel.getDuration()));
 
+        // Check the track.
+        checkTrackMode(MusicPlayerSingleton.getInstance().getCurrentPlayingTrack(), trackModel);
+
         // Listen for new tracks being played.
         MusicPlayerSingleton.getInstance().listenForTrackChange(new Action<TrackModel>() {
             @Override
             public void invoke(TrackModel trackModelPlaying) {
                 super.invoke(trackModelPlaying);
-
-                if (trackModelPlaying == null) {
-                    setPlayMode(NOT_BEING_USED);
-                    return;
-                }
-
-                if (MusicPlayerSingleton.getInstance().isThisTrack(trackModel)) {
-
-                    if (MusicPlayerSingleton.getInstance().isThisTrackPlaying(trackModel)) {
-                        setPlayMode(ViewHolderTrack.PlayMode.PLAYING);
-                    } else {
-                        setPlayMode(ViewHolderTrack.PlayMode.PAUSED);
-                    }
-
-                } else {
-                    setPlayMode(ViewHolderTrack.PlayMode.NOT_BEING_USED);
-                }
+                checkTrackMode(trackModelPlaying, trackModel);
             }
         });
+    }
+
+    private void checkTrackMode(@Nullable TrackModel trackModelPlaying, TrackModel thisTrackModel) {
+        if (trackModelPlaying == null) {
+            setPlayMode(NOT_BEING_USED);
+            return;
+        }
+
+        if (MusicPlayerSingleton.getInstance().isThisTrack(thisTrackModel)) {
+
+            if (MusicPlayerSingleton.getInstance().isThisTrackPlaying(thisTrackModel)) {
+                setPlayMode(ViewHolderTrack.PlayMode.PLAYING);
+            } else {
+                setPlayMode(ViewHolderTrack.PlayMode.PAUSED);
+            }
+
+        } else {
+            setPlayMode(ViewHolderTrack.PlayMode.NOT_BEING_USED);
+        }
     }
 
     public void setPlayMode(final PlayMode playMode) {

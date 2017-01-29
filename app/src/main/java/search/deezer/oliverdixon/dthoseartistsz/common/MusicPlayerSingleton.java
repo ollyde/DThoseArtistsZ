@@ -110,4 +110,9 @@ public class MusicPlayerSingleton {
     public boolean isThisTrackPlaying(final TrackModel trackModel) {
         return isThisTrack(trackModel) && mediaPlayer != null && mediaPlayer.isPlaying();
     }
+
+    @Nullable
+    public TrackModel getCurrentPlayingTrack() {
+        return currentPlayingTrack;
+    }
 }

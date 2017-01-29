@@ -8,7 +8,6 @@ import android.widget.TextView;
 import butterknife.BindView;
 import search.deezer.oliverdixon.dthoseartistsz.R;
 import search.deezer.oliverdixon.dthoseartistsz.common.BaseRecycleViewHolder;
-import search.deezer.oliverdixon.dthoseartistsz.common.RotatingImageView;
 import search.deezer.oliverdixon.dthoseartistsz.common.TextUtils;
 import search.deezer.oliverdixon.dthoseartistsz.models.TrackModel;
 

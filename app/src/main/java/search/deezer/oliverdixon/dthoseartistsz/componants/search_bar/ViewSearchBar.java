@@ -16,8 +16,8 @@ import search.deezer.oliverdixon.dthoseartistsz.common.EditTextCancel;
 import search.deezer.oliverdixon.dthoseartistsz.common.Logger;
 import search.deezer.oliverdixon.dthoseartistsz.common.ReferenceObserver;
 import search.deezer.oliverdixon.dthoseartistsz.common.RetrofitSingleton;
-import search.deezer.oliverdixon.dthoseartistsz.models.ListOfArtistsModel;
 import search.deezer.oliverdixon.dthoseartistsz.models.ArtistsResultModel;
+import search.deezer.oliverdixon.dthoseartistsz.models.ListOfArtistsModel;
 import search.deezer.oliverdixon.dthoseartistsz.services.ArtistsService;
 
 public class ViewSearchBar extends RelativeLayout {

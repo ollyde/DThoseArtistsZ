@@ -40,22 +40,26 @@ public class MusicPlayerSingleton {
 
     private void setupMediaPlayer(final TrackModel trackModel, Action<Boolean> isPlaying) {
 
-        stop();
+        killPlayer();
         mediaPlayer = new MediaPlayer();
 
         try {
             mediaPlayer.setDataSource(trackModel.getPreview());
-            mediaPlayer.prepare();
+            mediaPlayer.prepareAsync();
+
+            mediaPlayer.setOnPreparedListener(mp -> {
+                isPlaying.invoke(true);
+                mediaPlayer.start();
+            });
 
         } catch (Exception e) {
             Logger.logError("Unable to play track, preview link: " + trackModel.getPreview());
             e.printStackTrace();
             isPlaying.invoke(false);
+            killPlayer();
             return;
         }
 
-        mediaPlayer.start();
-        isPlaying.invoke(true);
         this.currentPlayingTrack = trackModel;
     }
 
@@ -89,6 +93,7 @@ public class MusicPlayerSingleton {
 
     private void killPlayer() {
         if (mediaPlayer != null) {
+            mediaPlayer.reset();
             mediaPlayer.release();
             mediaPlayer = null;
         }

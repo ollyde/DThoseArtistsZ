@@ -99,12 +99,19 @@
                 android:background="@color/codGrey"
                 />
 
-            <search.deezer.oliverdixon.dthoseartistsz.common.BaseRecycleView
-                android:id="@+id/track_list"
+            <!-- Recycle view ignores height and min height. -->
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/codGrey"
-                />
+                android:layout_height="300dp">
+
+                <search.deezer.oliverdixon.dthoseartistsz.common.BaseRecycleView
+                    android:id="@+id/track_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/codGrey"
+                    />
+
+            </LinearLayout>
 
         </LinearLayout>
 

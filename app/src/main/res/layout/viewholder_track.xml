@@ -62,7 +62,7 @@
 
     <!-- Play icon -->
     <ImageView
-        android:id="@+id/play_icon"
+        android:id="@+id/play_pause_icon"
         android:layout_width="50dp"
         android:layout_height="match_parent"
         android:padding="5dp"
@@ -70,6 +70,15 @@
         android:contentDescription="@null"
         android:scaleType="fitCenter"
         android:src="@drawable/play_icon_white"
+        android:visibility="gone"
+        />
+
+    <!-- Track loading spinner -->
+    <ProgressBar
+        android:id="@+id/track_loading_spinner"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:visibility="gone"
         />
 

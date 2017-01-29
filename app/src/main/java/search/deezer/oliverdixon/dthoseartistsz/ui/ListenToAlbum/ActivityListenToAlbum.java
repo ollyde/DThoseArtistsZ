@@ -18,10 +18,8 @@ import search.deezer.oliverdixon.dthoseartistsz.R;
 import search.deezer.oliverdixon.dthoseartistsz.common.Action;
 import search.deezer.oliverdixon.dthoseartistsz.common.BaseActivity;
 import search.deezer.oliverdixon.dthoseartistsz.common.BaseRecycleView;
-import search.deezer.oliverdixon.dthoseartistsz.common.BaseRecycleViewHolder;
 import search.deezer.oliverdixon.dthoseartistsz.common.Logger;
 import search.deezer.oliverdixon.dthoseartistsz.common.MusicPlayerSingleton;
-import search.deezer.oliverdixon.dthoseartistsz.common.RecycleViewOnClickListener;
 import search.deezer.oliverdixon.dthoseartistsz.common.RetrofitSingleton;
 import search.deezer.oliverdixon.dthoseartistsz.common.SquareImageView;
 import search.deezer.oliverdixon.dthoseartistsz.models.AlbumResultModel;
@@ -59,6 +57,12 @@ public class ActivityListenToAlbum extends BaseActivity {
         getTrackData(albumResultModel);
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MusicPlayerSingleton.getInstance().stop();
+    }
+
     private void loadAlbumData(final AlbumResultModel albumResultModel) {
         title.setText(albumResultModel.getTitle());
         subHeader.setText(albumResultModel.getArtistName());
@@ -88,17 +92,27 @@ public class ActivityListenToAlbum extends BaseActivity {
     }
 
     private void setupTrackList() {
-        trackList.getAdapter().setOnClickListeners(new int[]{R.id.track_name_and_sub_header, R.id.track_no, R.id.play_icon, R.id.track_time}, (pressTime, baseRecycleViewHolder) -> {
+        trackList.getAdapter().setOnClickListeners(new int[]{R.id.track_name_and_sub_header, R.id.track_no, R.id.play_pause_icon, R.id.track_time}, (pressTime, baseRecycleViewHolder) -> {
 
             final ViewHolderTrack viewHolderTrack = (ViewHolderTrack) baseRecycleViewHolder;
-            TrackModel trackModel = (TrackModel) viewHolderTrack.getRecycleViewDataModel();
+            final TrackModel trackModel = (TrackModel) viewHolderTrack.getRecycleViewDataModel();
+
+            // Was tapped so we started loading the track.
+            viewHolderTrack.setPlayMode(ViewHolderTrack.PlayMode.LOADING);
 
             // List for track changes and set the icon on or off.
             MusicPlayerSingleton.getInstance().listenForTrackChange(new Action<TrackModel>() {
                 @Override
                 public void invoke(TrackModel trackModelPlaying) {
                     super.invoke(trackModelPlaying);
-                    viewHolderTrack.setIsPlaying(MusicPlayerSingleton.getInstance().isThisTrackPlaying(trackModel));
+
+                    if (trackModelPlaying.getId().equals(trackModel.getId())) {
+                        if (MusicPlayerSingleton.getInstance().isThisTrackPlaying(trackModelPlaying)) {
+                            viewHolderTrack.setPlayMode(ViewHolderTrack.PlayMode.PLAYING);
+                        } else {
+                            viewHolderTrack.setPlayMode(ViewHolderTrack.PlayMode.PAUSED);
+                        }
+                    }
                 }
             });
 
@@ -106,7 +120,12 @@ public class ActivityListenToAlbum extends BaseActivity {
                 @Override
                 public void invoke(Boolean isPlaying) {
                     super.invoke(isPlaying);
-                    viewHolderTrack.setIsPlaying(isPlaying);
+
+                    if (isPlaying) {
+                        viewHolderTrack.setPlayMode(ViewHolderTrack.PlayMode.PLAYING);
+                    } else {
+                        viewHolderTrack.setPlayMode(ViewHolderTrack.PlayMode.PAUSED);
+                    }
                 }
             });
         });

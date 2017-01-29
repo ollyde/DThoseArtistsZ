@@ -20,7 +20,7 @@ public class MusicPlayerSingleton {
     private MusicPlayerSingleton() {
     }
 
-    public void playTrack(final TrackModel trackModel, Action<Boolean> isPlaying) {
+    public void playTrack(final TrackModel trackModel) {
 
         trackPlayingReferenceObserver.emit(trackModel);
 
@@ -28,18 +28,17 @@ public class MusicPlayerSingleton {
 
             if (isThisTrackPlaying(trackModel)) {
                 pause();
-                isPlaying.invoke(false);
+
             } else {
                 resume();
-                isPlaying.invoke(true);
             }
 
         } else {
-            setupMediaPlayer(trackModel, isPlaying);
+            setupMediaPlayer(trackModel);
         }
     }
 
-    private void setupMediaPlayer(final TrackModel trackModel, Action<Boolean> isPlaying) {
+    private void setupMediaPlayer(final TrackModel trackModel) {
 
         killPlayer();
         mediaPlayer = new MediaPlayer();
@@ -49,14 +48,15 @@ public class MusicPlayerSingleton {
             mediaPlayer.prepareAsync();
 
             mediaPlayer.setOnPreparedListener(mp -> {
-                isPlaying.invoke(true);
+                // Start must be before emitting that the track has started.
                 mediaPlayer.start();
+                trackPlayingReferenceObserver.emit(trackModel);
             });
 
         } catch (Exception e) {
             Logger.logError("Unable to play track, preview link: " + trackModel.getPreview());
             e.printStackTrace();
-            isPlaying.invoke(false);
+            trackPlayingReferenceObserver.emit(null);
             killPlayer();
             return;
         }
@@ -71,12 +71,14 @@ public class MusicPlayerSingleton {
     public void pause() {
         if (mediaPlayer != null && mediaPlayer.isPlaying()) {
             mediaPlayer.pause();
+            trackPlayingReferenceObserver.emit(currentPlayingTrack);
         }
     }
 
     public void resume() {
-        if (mediaPlayer != null && mediaPlayer.isPlaying()) {
+        if (mediaPlayer != null && !mediaPlayer.isPlaying()) {
             mediaPlayer.start();
+            trackPlayingReferenceObserver.emit(currentPlayingTrack);
         }
     }
 
@@ -84,6 +86,7 @@ public class MusicPlayerSingleton {
         currentPlayingTrack = null;
         if (mediaPlayer != null) {
             mediaPlayer.stop();
+            trackPlayingReferenceObserver.emit(null);
             killPlayer();
         }
     }

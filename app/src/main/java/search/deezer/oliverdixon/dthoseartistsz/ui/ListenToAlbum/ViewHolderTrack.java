@@ -7,7 +7,9 @@ import android.widget.TextView;
 
 import butterknife.BindView;
 import search.deezer.oliverdixon.dthoseartistsz.R;
+import search.deezer.oliverdixon.dthoseartistsz.common.Action;
 import search.deezer.oliverdixon.dthoseartistsz.common.BaseRecycleViewHolder;
+import search.deezer.oliverdixon.dthoseartistsz.common.MusicPlayerSingleton;
 import search.deezer.oliverdixon.dthoseartistsz.common.TextUtils;
 import search.deezer.oliverdixon.dthoseartistsz.models.TrackModel;
 
@@ -34,7 +36,7 @@ public class ViewHolderTrack extends BaseRecycleViewHolder {
     public void loadModel(Object model) {
         super.loadModel(model);
 
-        TrackModel trackModel = (TrackModel) model;
+        final TrackModel trackModel = (TrackModel) model;
 
         String trackId = String.valueOf(trackModel.getTrackPosition()) + "."; // << I never usually do string concatenation this way. Usually with placeholders.
         trackNo.setText(trackId);
@@ -50,6 +52,31 @@ public class ViewHolderTrack extends BaseRecycleViewHolder {
         }
 
         trackTime.setText(DateUtils.formatElapsedTime(trackModel.getDuration()));
+
+        // Listen for new tracks being played.
+        MusicPlayerSingleton.getInstance().listenForTrackChange(new Action<TrackModel>() {
+            @Override
+            public void invoke(TrackModel trackModelPlaying) {
+                super.invoke(trackModelPlaying);
+
+                if (trackModelPlaying == null) {
+                    setPlayMode(NOT_BEING_USED);
+                    return;
+                }
+
+                if (MusicPlayerSingleton.getInstance().isThisTrack(trackModel)) {
+
+                    if (MusicPlayerSingleton.getInstance().isThisTrackPlaying(trackModel)) {
+                        setPlayMode(ViewHolderTrack.PlayMode.PLAYING);
+                    } else {
+                        setPlayMode(ViewHolderTrack.PlayMode.PAUSED);
+                    }
+
+                } else {
+                    setPlayMode(ViewHolderTrack.PlayMode.NOT_BEING_USED);
+                }
+            }
+        });
     }
 
     public void setPlayMode(final PlayMode playMode) {

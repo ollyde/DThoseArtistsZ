@@ -60,6 +60,7 @@ public class ActivityListenToAlbum extends BaseActivity {
     @Override
     protected void onPause() {
         super.onPause();
+        MusicPlayerSingleton.getInstance().clearTracksListening();
         MusicPlayerSingleton.getInstance().stop();
     }
 
@@ -98,38 +99,7 @@ public class ActivityListenToAlbum extends BaseActivity {
             final TrackModel trackModel = (TrackModel) viewHolderTrack.getRecycleViewDataModel();
 
             // Was tapped so we started loading the track.
-            viewHolderTrack.setPlayMode(ViewHolderTrack.PlayMode.LOADING);
-
-            // List for track changes and set the icon on or off.
-            MusicPlayerSingleton.getInstance().listenForTrackChange(new Action<TrackModel>() {
-                @Override
-                public void invoke(TrackModel trackModelPlaying) {
-                    super.invoke(trackModelPlaying);
-
-                    if (trackModelPlaying.getId().equals(trackModel.getId())) {
-                        if (MusicPlayerSingleton.getInstance().isThisTrackPlaying(trackModelPlaying)) {
-                            viewHolderTrack.setPlayMode(ViewHolderTrack.PlayMode.PLAYING);
-                        } else {
-                            viewHolderTrack.setPlayMode(ViewHolderTrack.PlayMode.PAUSED);
-                        }
-                    } else {
-                        viewHolderTrack.setPlayMode(ViewHolderTrack.PlayMode.NOT_BEING_USED);
-                    }
-                }
-            });
-
-            MusicPlayerSingleton.getInstance().playTrack(trackModel, new Action<Boolean>() {
-                @Override
-                public void invoke(Boolean isPlaying) {
-                    super.invoke(isPlaying);
-
-                    if (isPlaying) {
-                        viewHolderTrack.setPlayMode(ViewHolderTrack.PlayMode.PLAYING);
-                    } else {
-                        viewHolderTrack.setPlayMode(ViewHolderTrack.PlayMode.PAUSED);
-                    }
-                }
-            });
+            MusicPlayerSingleton.getInstance().playTrack(trackModel);
         });
     }
 
